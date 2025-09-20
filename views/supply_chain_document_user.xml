@@ -1,0 +1,12 @@
+<odoo>
+    <record id="view_supply_chain_document_user_form" model="ir.ui.view">
+        <field name="name">res.users.form.supply.chain.document</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='access_rights']/group[4]/group[2]" position="inside">
+                <field name="sales_person"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
