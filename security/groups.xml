@@ -1,0 +1,11 @@
+<odoo>
+    <record id="group_sales_person" model="res.groups">
+        <field name="name">Sales Person</field>
+        <field name="category_id" ref="base.module_category_sales"/>
+    </record>
+
+    <record id="group_documents_approver" model="res.groups">
+        <field name="name">Documents Approver</field>
+        <field name="category_id" ref="base.module_category_sales"/>
+    </record>
+</odoo>
