@@ -10,7 +10,7 @@
     'depends': ['base', 'stock', 'purchase', 'account'],
     'data': [
         'views/supply_chain_document_views.xml',
-        # 'views/supply_chain_document_user.xml',
+        'security/groups.xml',
         'security/ir.model.access.csv',
     ],
 }

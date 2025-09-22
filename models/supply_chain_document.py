@@ -15,20 +15,23 @@ class SupplyChainDocument(models.Model):
         ('invoice', 'Invoice'),
         ('packing_slip', 'Packing Slip'),
         ('phytosanitary_certificate', 'Phytosanitary Certificate')
-    ], string='Document Name', required=True)
-    attachment_count = fields.Integer(string='Attachments', compute='_compute_attachment_count')
+    ], string='Document Name', required=True, tracking=True)
+    attachment_count = fields.Integer(string='Attachments', compute='_compute_attachment_count', tracking=True)
     status = fields.Selection([
         ('submitted', 'Submitted'),
         ('review', 'Review'),
         ('approved', 'Approved'),
         ('rejected', 'Rejected'),
-    ], string='Document Status', default='submitted')
+    ], string='Document Status', default='submitted', required =True, tracking=True)
+
     attachment_ids = fields.Many2many(
         'ir.attachment',
         'supply_chain_document_attachment_rel',
         'document_id',
         'attachment_id',
-        string='Attachments'
+        string='Attachments',
+        required=True,
+        tracking=True
     )
 
     def _compute_attachment_count(self):
@@ -37,19 +40,8 @@ class SupplyChainDocument(models.Model):
 
 class SalesOrder(models.Model):
     _inherit = 'sale.order'
-    scm_document_ids = fields.One2many('supply.chain.document', 'sale_order_id', string='Supply Chain Documents')
+    _rec_name = 'name'
+    scm_document_ids = fields.One2many('supply.chain.document', 'sale_order_id', string='Supply Chain Documents', tracking=True)
     scm_document_count = fields.Integer(string='SCM Docs Count', compute='_compute_scm_document_count')
-    is_sales_person = fields.Boolean(
-        string='Is Sales Person',
-        compute='_compute_is_sales_person',
-    )
-
-    def _compute_scm_document_count(self):
-        for order in self:
-            order.scm_document_count = len(order.scm_document_ids)
-
-    def _compute_is_sales_person(self):
-        for record in self:
-            record.is_sales_person = self.env.user.sales_person
 
 

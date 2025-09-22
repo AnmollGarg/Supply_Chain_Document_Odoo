@@ -1,2 +1,3 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_supply_chain_document_user,supply.chain.document.user,model_supply_chain_document,base.group_user,1,1,1,1
+access_supply_chain_document_sales_person,supply.chain.document.sales.person,model_supply_chain_document,supply_chain_document.group_sales_person,1,1,1,0
+access_supply_chain_document_approver,supply.chain.document.approver,model_supply_chain_document,supply_chain_document.group_documents_approver,1,1,1,0

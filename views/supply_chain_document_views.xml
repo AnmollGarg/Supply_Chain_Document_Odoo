@@ -21,13 +21,14 @@
                 <group>
                     <field name="name"/>
                     <field name="attachment_count"/>
-                    <field name="status"/>
+                    <field name="status" readonly="1" groups="supply_chain_document.group_sales_person"/>
+                    <field name="status" groups="!supply_chain_document.group_sales_person"/>
                     <field name="attachment_ids" widget="many2many_binary"/>
                 </group>
             </form>
         </field>
     </record>
-`
+
     <record id="view_sale_order_form_inherit_scm" model="ir.ui.view">
         <field name="name">sale.order.form.inherit.scm</field>
         <field name="model">sale.order</field>
@@ -40,7 +41,8 @@
                             <field name="name"/>
                             <field name="attachment_ids" widget="many2many_binary"/>
                             <field name="attachment_count"/>
-                            <field name="status"/>
+                            <field name="status" readonly="1" groups="supply_chain_document.group_sales_person"/>
+                            <field name="status" groups="!supply_chain_document.group_sales_person"/>
                         </list>
                     </field>
                 </page>
